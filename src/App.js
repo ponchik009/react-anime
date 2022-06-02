@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeContext } from "@emotion/react";
+import React from "react";
+import Layout from "./layout/Layout";
+import { themes } from "./theme/themeContext";
 
 function App() {
+  const [theme, steTheme] = React.useState(themes.light);
+
+  const toggleTheme = () =>
+    steTheme(theme === themes.light ? themes.dark : themes.light);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={theme}>
+      <Layout toggleTheme={toggleTheme} />
+    </ThemeContext.Provider>
   );
 }
 
