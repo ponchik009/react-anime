@@ -9,16 +9,18 @@ export const themes = {
     justifyContent: "center",
     flexDirection: "column",
     padding: "calc(2vh + 2vw)",
+    boxSizing: "border-box",
+    minHeight: "100vh",
 
     button: {
       background: "white",
       color: "black",
     },
 
-    buttonGroup: {
+    container: {
       minWidth: "80vw",
       display: "flex",
-      justifyContent: "space-around",
+      justifyContent: "center",
       alignItems: "center",
     },
 
@@ -26,6 +28,10 @@ export const themes = {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+    },
+
+    title: {
+      fontSize: "calc(3vh + 3vw)",
     },
   },
   light: {
@@ -36,16 +42,18 @@ export const themes = {
     justifyContent: "center",
     flexDirection: "column",
     padding: "calc(2vh + 2vw)",
+    boxSizing: "border-box",
+    minHeight: "100vh",
 
     button: {
       background: "#c953c9",
       color: "white",
     },
 
-    buttonGroup: {
+    container: {
       minWidth: "80vw",
       display: "flex",
-      justifyContent: "space-around",
+      justifyContent: "center",
       alignItems: "center",
     },
 
@@ -53,6 +61,10 @@ export const themes = {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+    },
+
+    title: {
+      fontSize: "calc(3vh + 3vw)",
     },
   },
 };
