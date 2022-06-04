@@ -1,7 +1,7 @@
 import axios from "./instance";
 
 export class Api {
-  static async *getQuotes() {
+  static async *getAnime() {
     let maxPage = 970;
     let page = Math.floor(Math.random() * (maxPage + 1));
     const set = new Set();

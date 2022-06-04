@@ -4,19 +4,55 @@ export const themes = {
   dark: {
     background: "black",
     color: "white",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    padding: "calc(2vh + 2vw)",
+
     button: {
       background: "white",
-      border: "1px solid red",
       color: "black",
+    },
+
+    buttonGroup: {
+      minWidth: "80vw",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+
+    card: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
   },
   light: {
     background: "white",
     color: "black",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    padding: "calc(2vh + 2vw)",
+
     button: {
-      background: "black",
-      border: "1px solid red",
+      background: "#c953c9",
       color: "white",
+    },
+
+    buttonGroup: {
+      minWidth: "80vw",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+
+    card: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
   },
 };

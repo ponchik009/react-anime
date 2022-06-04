@@ -1,15 +1,22 @@
-import { ThemeContext } from "@emotion/react";
 import React, { useContext } from "react";
 
-const Layout = ({ children, toggleTheme }) => {
+import { ThemeContext } from "../theme/themeContext";
+import { Box, Button } from "@mui/material";
+
+const Layout = ({ children, toggleTheme, handleUpdate }) => {
   const theme = useContext(ThemeContext);
 
   return (
     <div style={theme}>
-      <button onClick={toggleTheme} style={theme.button}>
-        CHANGE THEME
-      </button>
-      <div>123</div>
+      <Box style={theme.buttonGroup}>
+        <Button onClick={toggleTheme} style={theme.button}>
+          Поменять тему
+        </Button>
+        <Button onClick={handleUpdate} style={theme.button}>
+          Обновить список
+        </Button>
+      </Box>
+      {children}
     </div>
   );
 };
