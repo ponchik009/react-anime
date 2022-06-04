@@ -9,9 +9,9 @@ function App() {
 
   const quotesGenerator = React.useRef(Api.getQuotes());
 
-  // React.useEffect(() => {
-  //   quotesGenerator.current.next().then((quotes) => console.log(quotes));
-  // }, [theme]);
+  React.useEffect(() => {
+    quotesGenerator.current.next().then((quotes) => console.log(quotes));
+  }, [theme]);
 
   const toggleTheme = () =>
     steTheme(theme === themes.light ? themes.dark : themes.light);
