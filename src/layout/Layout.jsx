@@ -1,16 +1,17 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import { ThemeContext } from "../theme/themeContext";
 import { AppBar, Box, Button, Tabs, Toolbar, Tab } from "@mui/material";
+import { routes } from "../const/const";
 
 const Layout = ({ children, toggleTheme }) => {
   const theme = useContext(ThemeContext);
+  const location = useLocation();
 
-  const [tab, setTab] = React.useState(0);
+  const [tab, setTab] = React.useState(routes.indexOf(location.pathname));
 
   const handleTabChange = (event, newValue) => {
-    console.log(newValue);
     setTab(newValue);
   };
 
