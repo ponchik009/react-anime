@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Api } from "../../api/api";
+import AnimeList from "../../components/AnimeList/AnimeList";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 
 const AnimePage = () => {
   const [data, setData] = React.useState();
@@ -12,7 +14,16 @@ const AnimePage = () => {
       .next()
       .then((generatorObject) => setData(generatorObject.value.data));
 
-  return <div>AnimePage</div>;
+  React.useEffect(() => {
+    fetchAnime();
+  }, []);
+
+  return (
+    <div>
+      <AnimeList data={data} />
+      <ScrollToTop />
+    </div>
+  );
 };
 
 export default AnimePage;

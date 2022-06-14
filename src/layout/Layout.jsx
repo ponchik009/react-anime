@@ -17,6 +17,7 @@ const Layout = ({ children, toggleTheme }) => {
       </AppBar>
       <div id="up"></div>
       <Box style={theme}>{children}</Box>
+      <div id="down"></div>
     </>
   );
 };

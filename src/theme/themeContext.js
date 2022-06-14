@@ -8,7 +8,7 @@ export const themes = {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    padding: "calc(2vh + 2vw)",
+    padding: "calc(8vh + 2vw)",
     boxSizing: "border-box",
     minHeight: "100vh",
 
@@ -41,7 +41,7 @@ export const themes = {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    padding: "calc(2vh + 2vw)",
+    padding: "calc(8vh + 2vw)",
     boxSizing: "border-box",
     minHeight: "100vh",
 
