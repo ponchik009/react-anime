@@ -5,8 +5,6 @@ import { Grid } from "@mui/material";
 const AnimeList = ({ data }) => {
   const theme = React.useContext(ThemeContext);
 
-  console.log(data);
-
   return (
     <Grid
       container

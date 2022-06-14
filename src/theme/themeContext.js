@@ -33,6 +33,15 @@ export const themes = {
     title: {
       fontSize: "calc(3vh + 3vw)",
     },
+
+    appbar: {
+      backgroundColor: "#0ced10",
+    },
+
+    toolbar: {
+      display: "flex",
+      justifyContent: "space-between",
+    },
   },
   light: {
     background: "white",
@@ -65,6 +74,15 @@ export const themes = {
 
     title: {
       fontSize: "calc(3vh + 3vw)",
+    },
+
+    appbar: {
+      backgroundColor: "#7be391",
+    },
+
+    toolbar: {
+      display: "flex",
+      justifyContent: "space-between",
     },
   },
 };
