@@ -6,9 +6,18 @@ import AnimeList from "../../components/AnimeList/AnimeList";
 import { useFetch } from "../../hooks/hooks";
 
 const AnimePage = () => {
-  const [data, setData] = React.useState();
+  const [data, setData] = React.useState([]);
+
+  const onDownDivScroll = React.useCallback(function (entries) {
+    if (entries[0].isIntersecting) {
+      fetchAnime().then((generatorObject) => {
+        setData((data) => [...data, ...generatorObject.value.data]);
+      });
+    }
+  });
 
   const animeGenerator = React.useRef(Api.getAnime());
+  const observer = React.useRef(new IntersectionObserver(onDownDivScroll));
 
   const [fetchAnime, isLoading] = useFetch(
     animeGenerator.current.next.bind(animeGenerator.current)
@@ -18,10 +27,14 @@ const AnimePage = () => {
     fetchAnime().then((generatorObject) => {
       setData(generatorObject.value.data);
     });
+    observer.current.observe(document.querySelector("#down"));
   }, []);
 
   return (
-    <div>{isLoading ? <CircularProgress /> : <AnimeList data={data} />}</div>
+    <>
+      <AnimeList data={data} />
+      {isLoading && <CircularProgress />}
+    </>
   );
 };
 

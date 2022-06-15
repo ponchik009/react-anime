@@ -12,6 +12,10 @@ const Layout = ({ children, toggleTheme }) => {
 
   const [tab, setTab] = React.useState(routes.indexOf(location.pathname));
 
+  React.useEffect(() => {
+    setTab(routes.indexOf(location.pathname));
+  });
+
   const handleTabChange = (event, newValue) => {
     setTab(newValue);
   };
@@ -34,7 +38,7 @@ const Layout = ({ children, toggleTheme }) => {
       <Box style={theme}>
         {children} <ScrollToTop />
       </Box>
-      <div id="down"></div>
+      <div id="down" style={{ height: "20px" }}></div>
     </>
   );
 };
