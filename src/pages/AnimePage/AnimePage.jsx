@@ -7,12 +7,18 @@ import { useFetch } from "../../hooks/hooks";
 
 const AnimePage = () => {
   const [data, setData] = React.useState([]);
+  const [error, setError] = React.useState("");
 
   const onDownDivScroll = React.useCallback(function (entries) {
     if (entries[0].isIntersecting) {
-      fetchAnime().then((generatorObject) => {
-        setData((data) => [...data, ...generatorObject.value.data]);
-      });
+      fetchAnime()
+        .then((generatorObject) => {
+          if (!generatorObject.value) return;
+          setData((data) => [...data, ...generatorObject.value.data]);
+        })
+        .catch((err) => {
+          setError("Не удалось получить данные");
+        });
     }
   });
 
@@ -24,15 +30,12 @@ const AnimePage = () => {
   );
 
   React.useEffect(() => {
-    fetchAnime().then((generatorObject) => {
-      setData(generatorObject.value.data);
-    });
     observer.current.observe(document.querySelector("#down"));
   }, []);
 
   return (
     <>
-      <AnimeList data={data} />
+      <AnimeList data={data} error={error} />
       {isLoading && <CircularProgress />}
     </>
   );
