@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { ThemeContext } from "../theme/themeContext";
 import { AppBar, Box, Button, Tabs, Toolbar, Tab } from "@mui/material";
 import { routes } from "../const/const";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
 const Layout = ({ children, toggleTheme }) => {
   const theme = useContext(ThemeContext);
@@ -30,7 +31,9 @@ const Layout = ({ children, toggleTheme }) => {
         </Toolbar>
       </AppBar>
       <div id="up"></div>
-      <Box style={theme}>{children}</Box>
+      <Box style={theme}>
+        {children} <ScrollToTop />
+      </Box>
       <div id="down"></div>
     </>
   );
