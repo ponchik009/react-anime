@@ -1,9 +1,31 @@
 import React from "react";
 import { ThemeContext } from "../../theme/themeContext";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
-const AnimeList = ({ data, error }) => {
+const List = ({ fetchFunction, isLoading }) => {
   const theme = React.useContext(ThemeContext);
+
+  const [data, setData] = React.useState([]);
+  const [error, setError] = React.useState("");
+
+  const onDownDivScroll = React.useCallback(function (entries) {
+    if (entries[0].isIntersecting) {
+      fetchFunction()
+        .then((generatorObject) => {
+          if (!generatorObject.value) return;
+          setData((data) => [...data, ...generatorObject.value.data]);
+        })
+        .catch((err) => {
+          setError("Не удалось получить данные");
+        });
+    }
+  });
+
+  const observer = React.useRef(new IntersectionObserver(onDownDivScroll));
+
+  React.useEffect(() => {
+    observer.current.observe(document.querySelector("#down"));
+  }, []);
 
   return (
     <>
@@ -25,7 +47,7 @@ const AnimeList = ({ data, error }) => {
                   item
                   xs={12}
                   sm={6}
-                  md={3}
+                  md={4}
                   key={anime.mal_id}
                   style={theme.card}
                 >
@@ -40,8 +62,10 @@ const AnimeList = ({ data, error }) => {
       ) : (
         <p>{error}</p>
       )}
+      {isLoading && <CircularProgress />}
+      <div id="down" style={{ height: "20px" }}></div>
     </>
   );
 };
 
-export default AnimeList;
+export default List;

@@ -38,7 +38,6 @@ const Layout = ({ children, toggleTheme }) => {
       <Box style={theme}>
         {children} <ScrollToTop />
       </Box>
-      <div id="down" style={{ height: "20px" }}></div>
     </>
   );
 };

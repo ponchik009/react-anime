@@ -9,11 +9,16 @@ export class Api {
     let url = `/v4/anime?page=${page}`;
 
     while (true) {
-      const quotes = await axios.get(url);
+      let animes;
+      try {
+        animes = await axios.get(url);
+      } catch {
+        throw new Error("Не удалось получить данные");
+      }
 
-      maxPage = quotes.data.pagination["last_visible_page"];
+      maxPage = animes.data.pagination["last_visible_page"];
 
-      yield quotes.data;
+      yield animes.data;
 
       page = Math.floor(Math.random() * (maxPage + 1));
       while (set.has(page)) {
