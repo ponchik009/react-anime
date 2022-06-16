@@ -13,7 +13,7 @@ const AnimePage = () => {
 
   return (
     <>
-      <List fetchFunction={fetchAnime} isLoading={isLoading} />
+      <List fetchFunction={fetchAnime} isLoading={isLoading} type="anime" />
     </>
   );
 };

@@ -1,8 +1,10 @@
 import React from "react";
-import { ThemeContext } from "../../theme/themeContext";
 import { CircularProgress, Grid } from "@mui/material";
 
-const List = ({ fetchFunction, isLoading }) => {
+import { ThemeContext } from "../../theme/themeContext";
+import Item from "./Item/Item";
+
+const List = ({ fetchFunction, isLoading, type }) => {
   const theme = React.useContext(ThemeContext);
 
   const [data, setData] = React.useState([]);
@@ -41,20 +43,8 @@ const List = ({ fetchFunction, isLoading }) => {
             justifyContent="center"
             alignItems="center"
           >
-            {data.map((anime) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  key={anime.mal_id}
-                  style={theme.card}
-                >
-                  <p>{anime.title}</p>
-                  <img src={anime.images.jpg.image_url} alt="Аватарка" />
-                </Grid>
-              );
+            {data.map((item, index) => {
+              return <Item type={type} theme={theme} item={item} key={index} />;
             })}
           </Grid>
           <div>{error}</div>
