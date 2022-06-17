@@ -15,7 +15,7 @@ const List = ({ fetchFunction, isLoading, type }) => {
       fetchFunction()
         .then((generatorObject) => {
           if (!generatorObject.value) return;
-          setData((data) => [...data, ...generatorObject.value.data]);
+          setData((data) => [...data, ...generatorObject.value]);
         })
         .catch((err) => {
           setError("Не удалось получить данные");

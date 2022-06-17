@@ -18,7 +18,7 @@ export class Api {
 
       maxPage = animes.data.pagination["last_visible_page"];
 
-      yield animes.data;
+      yield animes.data.data;
 
       page = Math.floor(Math.random() * (maxPage + 1));
       while (set.has(page)) {
@@ -44,7 +44,7 @@ export class Api {
         throw new Error("Не удалось получить данные");
       }
 
-      yield waifus.data;
+      yield waifus.data.files;
     }
   }
 }

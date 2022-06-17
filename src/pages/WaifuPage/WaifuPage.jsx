@@ -15,7 +15,7 @@ const WaifuPage = () => {
     fetchWaifu()
       .then((generatorObject) => {
         if (!generatorObject) return;
-        console.log(generatorObject.value.files);
+        console.log(generatorObject.value);
       })
       .catch((err) => {
         console.log("Не удалось получить данные");
