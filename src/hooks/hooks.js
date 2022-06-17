@@ -6,8 +6,9 @@ export const useFetch = (fetchFunction) => {
   function fetchData() {
     setIsLoading(true);
     return fetchFunction()
-      .then((data) => data)
-
+      .then((data) => {
+        return data;
+      })
       .finally(() => setIsLoading(false));
   }
 

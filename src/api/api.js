@@ -6,7 +6,7 @@ export class Api {
     let page = Math.floor(Math.random() * (maxPage + 1));
     const set = new Set();
     set.add(page);
-    let url = `/v4/anime?page=${page}`;
+    let url = `https://api.jikan.moe/v4/anime?page=${page}`;
 
     while (true) {
       let animes;
@@ -28,6 +28,23 @@ export class Api {
 
       const splited = url.split("=");
       url = splited[0] + "=" + page;
+    }
+  }
+
+  static async *getWaifu() {
+    let url = `https://api.waifu.pics/many/sfw/waifu`;
+
+    while (true) {
+      let waifus;
+      try {
+        waifus = await axios.post(url, {
+          exclude: [],
+        });
+      } catch {
+        throw new Error("Не удалось получить данные");
+      }
+
+      yield waifus.data;
     }
   }
 }
