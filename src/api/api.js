@@ -1,6 +1,8 @@
 import axios from "./instance";
 
 export class Api {
+  constructor() {}
+
   static async *#animeGenerator() {
     let maxPage = 970;
     let page = Math.floor(Math.random() * (maxPage + 1));
@@ -51,8 +53,8 @@ export class Api {
     return this;
   }
 
-  static async *waifuGenerator() {
-    let url = `https://api.waifu.pics/many/sfw/waifu`;
+  static async *#waifuGenerator(type) {
+    let url = `https://api.waifu.pics/many/${type}/waifu`;
 
     while (true) {
       let waifus;
@@ -66,5 +68,21 @@ export class Api {
 
       yield waifus.data.files;
     }
+  }
+
+  static waifuPageGenerator(type) {
+    this.generator = Api.#waifuGenerator(type);
+    this.currentPage = 1;
+
+    this.next = (page) => {
+      if (page === "next") {
+        this.currentPage += 1;
+      } else {
+        this.currentPage = page;
+      }
+      return this.generator.next(this.currentPage);
+    };
+
+    return this;
   }
 }

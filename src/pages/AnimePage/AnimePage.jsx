@@ -7,13 +7,15 @@ import { useFetch } from "../../hooks/hooks";
 const AnimePage = () => {
   const animeGenerator = React.useRef(Api.animePageGenerator());
 
-  const [fetchAnime, isLoading] = useFetch(
-    animeGenerator.current.next.bind(animeGenerator.current)
-  );
+  const [fetchAnime, isLoading] = useFetch();
 
   return (
     <>
-      <List fetchFunction={fetchAnime} isLoading={isLoading} type="anime" />
+      <List
+        fetchFunction={fetchAnime.bind(null, animeGenerator.current.next)}
+        isLoading={isLoading}
+        type="anime"
+      />
     </>
   );
 };

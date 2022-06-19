@@ -8,6 +8,7 @@ const List = ({ fetchFunction, isLoading, type }) => {
   const theme = React.useContext(ThemeContext);
 
   const [data, setData] = React.useState([]);
+
   const [error, setError] = React.useState("");
 
   const onDownDivScroll = React.useCallback(function (entries) {
@@ -18,6 +19,7 @@ const List = ({ fetchFunction, isLoading, type }) => {
           setData((data) => [...data, ...generatorObject.value]);
         })
         .catch((err) => {
+          console.log(err);
           setError("Не удалось получить данные");
         });
     }
@@ -28,6 +30,10 @@ const List = ({ fetchFunction, isLoading, type }) => {
   React.useEffect(() => {
     observer.current.observe(document.querySelector("#down"));
   }, []);
+
+  React.useEffect(() => {
+    setData([]);
+  }, [fetchFunction]);
 
   return (
     <>

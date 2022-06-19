@@ -1,11 +1,11 @@
 import React from "react";
 
-export const useFetch = (fetchFunction) => {
+export const useFetch = () => {
   const [isLoading, setIsLoading] = React.useState(false);
 
-  function fetchData(direction) {
+  function fetchData(fetchFunction, ...args) {
     setIsLoading(true);
-    return fetchFunction(direction)
+    return fetchFunction(...args)
       .then((data) => {
         return data;
       })
