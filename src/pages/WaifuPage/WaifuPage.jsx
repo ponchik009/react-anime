@@ -11,18 +11,11 @@ const WaifuPage = () => {
     waifuGenerator.current.next.bind(waifuGenerator.current)
   );
 
-  React.useEffect(() => {
-    fetchWaifu()
-      .then((generatorObject) => {
-        if (!generatorObject) return;
-        console.log(generatorObject.value);
-      })
-      .catch((err) => {
-        console.log("Не удалось получить данные");
-      });
-  }, []);
-
-  return <div>WaifuPage</div>;
+  return (
+    <>
+      <List fetchFunction={fetchWaifu} isLoading={isLoading} type="waifu" />
+    </>
+  );
 };
 
 export default WaifuPage;
