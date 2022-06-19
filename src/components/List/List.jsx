@@ -12,7 +12,7 @@ const List = ({ fetchFunction, isLoading, type }) => {
 
   const onDownDivScroll = React.useCallback(function (entries) {
     if (entries[0].isIntersecting) {
-      fetchFunction()
+      fetchFunction("next")
         .then((generatorObject) => {
           if (!generatorObject.value) return;
           setData((data) => [...data, ...generatorObject.value]);

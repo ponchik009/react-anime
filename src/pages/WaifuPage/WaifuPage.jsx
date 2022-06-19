@@ -5,7 +5,7 @@ import List from "../../components/List/List";
 import { useFetch } from "../../hooks/hooks";
 
 const WaifuPage = () => {
-  const waifuGenerator = React.useRef(Api.getWaifu());
+  const waifuGenerator = React.useRef(Api.waifuGenerator());
 
   const [fetchWaifu, isLoading] = useFetch(
     waifuGenerator.current.next.bind(waifuGenerator.current)
