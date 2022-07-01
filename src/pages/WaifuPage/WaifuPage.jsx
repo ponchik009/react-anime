@@ -14,7 +14,6 @@ const WaifuPage = () => {
     if (!newType) {
       return;
     }
-    console.log(newType);
     setType(newType);
     waifuGenerator.current = Api.waifuPageGenerator(newType);
   };

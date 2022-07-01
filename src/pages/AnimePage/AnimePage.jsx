@@ -9,13 +9,14 @@ const AnimePage = () => {
 
   const [fetchAnime, isLoading] = useFetch();
 
+  const fetch = React.useCallback(
+    fetchAnime.bind(null, animeGenerator.current.next),
+    []
+  );
+
   return (
     <>
-      <List
-        fetchFunction={fetchAnime.bind(null, animeGenerator.current.next)}
-        isLoading={isLoading}
-        type="anime"
-      />
+      <List fetchFunction={fetch} isLoading={isLoading} type="anime" />
     </>
   );
 };
