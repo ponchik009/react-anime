@@ -2,12 +2,23 @@ import React, { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { ThemeContext } from "../theme/themeContext";
-import { AppBar, Box, Button, Tabs, Toolbar, Tab } from "@mui/material";
+import { LanguageContext } from "../language/languageContext";
+import {
+  AppBar,
+  Box,
+  Button,
+  Tabs,
+  Toolbar,
+  Tab,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { routes } from "../const/const";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
-const Layout = ({ children, toggleTheme }) => {
+const Layout = ({ children, toggleTheme, toggleLanguage }) => {
   const theme = useContext(ThemeContext);
+  const language = useContext(LanguageContext);
   const location = useLocation();
 
   const [tab, setTab] = React.useState(routes.indexOf(location.pathname));
@@ -27,10 +38,28 @@ const Layout = ({ children, toggleTheme }) => {
           <Button onClick={toggleTheme} style={theme.button}>
             Поменять тему
           </Button>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={language.tag}
+            label="Language"
+            onChange={toggleLanguage}
+          >
+            <MenuItem value="en">English</MenuItem>
+            <MenuItem value="ru">Russian</MenuItem>
+          </Select>
           <Tabs value={tab} onChange={handleTabChange}>
-            <Tab label="Главная" LinkComponent={NavLink} to="/" />
-            <Tab label="Аниме" LinkComponent={NavLink} to="/anime" />
-            <Tab label="Вайфу" LinkComponent={NavLink} to="/waifu" />
+            <Tab label={language.menu.home} LinkComponent={NavLink} to="/" />
+            <Tab
+              label={language.menu.anime}
+              LinkComponent={NavLink}
+              to="/anime"
+            />
+            <Tab
+              label={language.menu.waifu}
+              LinkComponent={NavLink}
+              to="/waifu"
+            />
           </Tabs>
         </Toolbar>
       </AppBar>
