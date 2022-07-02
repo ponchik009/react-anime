@@ -1,66 +1,33 @@
 import React, { useContext } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+
+import { AppBar, Box, Button, Toolbar, Select, MenuItem } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { ThemeContext } from "../theme/themeContext";
 import { LanguageContext } from "../language/languageContext";
-import {
-  AppBar,
-  Box,
-  Button,
-  Tabs,
-  Toolbar,
-  Tab,
-  Select,
-  MenuItem,
-} from "@mui/material";
-import { routes } from "../const/const";
+
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
+import DesctopMenu from "./DesctopMenu";
+import MobileMenu from "./MobileMenu";
 
 const Layout = ({ children, toggleTheme, toggleLanguage }) => {
   const theme = useContext(ThemeContext);
   const language = useContext(LanguageContext);
-  const location = useLocation();
 
-  const [tab, setTab] = React.useState(routes.indexOf(location.pathname));
-
-  React.useEffect(() => {
-    setTab(routes.indexOf(location.pathname));
-  });
-
-  const handleTabChange = (event, newValue) => {
-    setTab(newValue);
-  };
+  const matches = useMediaQuery("(min-width:600px)");
 
   return (
     <>
       <AppBar position="fixed" style={theme.appbar}>
         <Toolbar style={theme.toolbar}>
           <Button onClick={toggleTheme} style={theme.button}>
-            Поменять тему
+            {language.changeTheme}
           </Button>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={language.tag}
-            label="Language"
-            onChange={toggleLanguage}
-          >
+          <Select value={language.tag} onChange={toggleLanguage}>
             <MenuItem value="en">English</MenuItem>
-            <MenuItem value="ru">Russian</MenuItem>
+            <MenuItem value="ru">Русский</MenuItem>
           </Select>
-          <Tabs value={tab} onChange={handleTabChange}>
-            <Tab label={language.menu.home} LinkComponent={NavLink} to="/" />
-            <Tab
-              label={language.menu.anime}
-              LinkComponent={NavLink}
-              to="/anime"
-            />
-            <Tab
-              label={language.menu.waifu}
-              LinkComponent={NavLink}
-              to="/waifu"
-            />
-          </Tabs>
+          {matches ? <DesctopMenu /> : <MobileMenu />}
         </Toolbar>
       </AppBar>
       <div id="up"></div>
